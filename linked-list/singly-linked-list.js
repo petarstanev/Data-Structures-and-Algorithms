@@ -1,9 +1,6 @@
 class LinkedList {
     constructor(value) {
-        this.head = {
-            value: value,
-            next: value
-        };
+        this.head = new Node(value)
         this.tail = this.head;
         this.length = 1;
     }
@@ -74,6 +71,21 @@ class LinkedList {
 
         return array;
     }
+
+    reverse() {
+        let first = this.head;
+        let second = this.head.next;
+
+        while (second) {
+            debugger;
+            let third = second.next;
+            second.next = first;
+            first = second;
+            second = third;
+        }
+        this.head.next = null;
+        this.head = first;
+    }
 }
 
 class Node {
@@ -83,13 +95,10 @@ class Node {
     }
 }
 
-const list = new LinkedList(10);
-list.append(5);
-list.append(16);
-list.prepand(1);
+const list = new LinkedList(1);
+list.append(2);
+list.append(3);
+list.append(4);
 console.log(list.printList());
-list.insert(2,3);
+list.reverse();
 console.log(list.printList());
-list.remove(3);
-console.log(list.printList());
-
